@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div { margin-left: 2em; border: 1px solid;}
+    </style>
+</head>
+<body>
+    <div id="test"></div>
+    <script>
+        var data = {
+            table1: [
+                {id:1, label:"c1", parent: null},
+                {id:2, label:"c2", parent: 1},
+                {id:3, label:"c3", parent: 1},
+                {id:4, label:"c4", parent: 2},
+            ],
+            table2: [
+                {id:5, label:"l1", parent: 1},
+                {id:6, label:"l2", parent: 4},
+                {id:7, label:"l3", parent: 4},
+                {id:8, label:"l4", parent: 3},
+            ]
+        };
+
+        // Process nodes
+        function process_nodes(data) {
+            for (var i = 0; i < data.table1.length; i++) {
+                process_node(data.table1[i]);
+            }
+            for (var i = 0; i < data.table2.length; i++) {
+                process_node(data.table2[i]);
+            }
+        }
+        function process_node(node){
+            var el = document.createElement("div");
+            var parent = null;
+            el.id = "node_" + node.id;
+            el.appendChild(document.createTextNode(node.label));
+            if (node.parent != null) {
+                parent = document.getElementById("node_" + node.parent);
+            }
+            else {
+                parent = document.getElementById("test");
+            }
+            parent.appendChild(el);
+        }
+
+        // Let's do this!
+        process_nodes(data);
+    </script>
+</body>
+</html>

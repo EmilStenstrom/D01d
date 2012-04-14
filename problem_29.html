@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .box {
+            display:none;
+        }
+    </style>
+    <script>
+        function setDisplay(i, value){
+            console.log(i)
+            document.getElementById("box_" + i).style.display = value;
+        }
+        function change(select){
+            console.log(select.value);
+            // Hide all boxes
+            for (var i = 1; i <= 3; i++) {
+                setDisplay(i, "none");
+            }
+            // Show the current one
+            setDisplay(select.value, "block");
+        }
+    </script>
+</head>
+<body>
+    <select onchange="change(this)">
+        <option>Select an option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select>
+    <div class="box" id="box_1">
+        Input 1:
+        <input type="text">
+    </div>
+    <div class="box" id="box_2">
+        Input 2:
+        <input type="text">
+    </div>
+    <div class="box" id="box_3">
+        Input 3:
+        <input type="text">
+    </div>
+</body>
+</html>
+

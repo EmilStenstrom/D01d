@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <script>
+        var data = [
+            {foo:4711},
+            {foo:17},
+            {foo:42},
+            {foo:9},
+            {foo:512}
+        ];
+        function sort(d){
+            var out = [];
+            var d_len = d.length;
+            for (var i = 0; i < d_len; i++){
+                var highest = Number.NEGATIVE_INFINITY;
+                var highest_idx = -1;
+                for (var j = 0; j < d.length; j++){
+                    if (d[j].foo > highest) {
+                        highest = d[j].foo;
+                        highest_idx = j;
+                    }
+                }
+                // Return and remove the element at index highest_idx
+                out.push(d.splice(highest_idx, 1)[0]);
+            }
+            return out;
+        }
+        console.log(sort(data))
+    </script>
+</body>
+</html>
