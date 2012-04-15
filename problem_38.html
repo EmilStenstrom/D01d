@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <script>
+        var i = 0;
+        (function(){
+            i++;
+            console.log("hello world");
+            if (i < 3) {
+                arguments.callee()
+            }
+        })();
+    </script>
+</body>
+</html>

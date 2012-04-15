@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <script>
+        function reverse(s){
+            var s_len = s.length;
+            var out = "";
+            for (var i = 0; i < s_len; i++){
+                out += s[s_len-i-1];
+            }
+            var out_len = s_len;
+            // Removes first of the two middle chars for even length strings
+            out = out.substring(0, out_len/2) + out.substring(out_len/2+1, out_len);
+            return out;
+        }
+        console.log("12345", "->", reverse("12345"))
+        console.log("hejsan", "->", reverse("hejsan"))
+        console.log("tjabba", "->", reverse("tjabba"))
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <form id="myform"></form>
+    <script>
+        var data1 = [
+            {name: "Name", type: "text"},
+            {name: "Fave books", type: "list", list: [
+                {name: "Best book", type: "text"},
+                {name: "Next best book", type: "text"}
+            ]},
+            { name: "Awake", type: "radio", values:["yes","no"]}
+        ];
+        var data2 = [
+            {name: "Date", type: "date"},
+            {name: "Emergencies", type: "list", list: [
+                {name: "Out of games", type: "radio", values: ["yes", "no"]},
+                {name: "Out of beer", type: "radio", values:["wait","what"]}
+            ]}
+        ];
+
+        // Process nodes
+        function process_nodes(nodelist) {
+            var out = "";
+            for (var i = 0; i < nodelist.length; i++) {
+                out += process_node(nodelist[i]);
+            }
+            return out;
+        }
+        function process_node(node){
+            return this[node.type](node);
+        }
+
+        // HTML generating nodes
+        function text(node){
+            return '<label>' + node.name + '<input type="text"></label>';
+        }
+        function list(node){
+            var out = "<fieldset><legend>" + node.name + "</legend><ul>";
+            for (var i = 0; i < node.list.length; i++) {
+                out += "<li>" + process_node(node.list[i]) + "</li>";
+            }
+            out += "</ul></fieldset>";
+            return out;
+        }
+        function date(node){
+            return '<label>' + node.name + '<input type="date"></label>';
+        }
+        function radio(node){
+            var out = "<fieldset><legend>" + node.name + "</legend>";
+            for (var i = 0; i < node.values.length; i++) {
+                out += '<input type="radio">' + node.values[i];
+            }
+            out += "</fieldset>"
+            return out;
+        }
+
+        // Let's do this!
+        document.getElementById("myform").innerHTML += process_nodes(data1);
+        document.getElementById("myform").innerHTML += process_nodes(data2);
+    </script>
+</body>
+</html>

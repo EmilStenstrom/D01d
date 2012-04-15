@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <div id="test"></div>
+    <script>
+        var done = false;
+        var interval = null;
+        function check(img, cb){
+            if (!done && img.height > 0 && img.width > 0) {
+                cb(img.height, img.width);
+                clearInterval(interval);
+                done = true;
+            }
+        }
+        function addImage(src, cb) {
+            var img = document.createElement("img");
+            img.onload = function() { check(img, cb) };
+            img.src = src;
+            document.getElementById("test").appendChild(img);
+            interval = setInterval(function(){ check(img, cb); }, 1000)
+        }
+
+        addImage("http://imgsrc.hubblesite.org/hu/db/2006/10/images/a/formats/hires_jpg.jpg", function(height, width){
+            console.log("height and width are:", height, width);
+        })
+    </script>
+</body>
+</html>
