@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <script>
+        function addfunc(obj){
+            addfunc.counter = 1;
+            obj.newFunc = function(){
+                return addfunc.counter++;
+            }
+            return obj;
+        }
+
+        var foo = {}, bar = {};
+        foo = addfunc(foo);
+        bar = addfunc(bar);
+        console.log(foo.newFunc())
+        console.log(bar.newFunc())
+    </script>
+</body>
+</html>
